@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function (e) {
-  const socket = io("http://localhost:8000");
+  const socket = io("https://chattingforrailways-production.up.railway.app/");
   const messagecontainer = document.querySelector(".container");
   const form = document.getElementById("send-container");
   const messageinput = document.getElementById("messageinp");

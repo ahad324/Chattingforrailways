@@ -1,4 +1,12 @@
-const io = require("socket.io")({
+const express = require("express");
+const http = require("http");
+const app = express();
+const port = 3000;
+
+app.use("/public", express.static("public"));
+const server = http.createServer(app);
+
+const io = require("socket.io")(server,{
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -23,4 +31,7 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("leave", users[socket.id]);
     delete users[socket.id];
   });
+});
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

@@ -1,12 +1,12 @@
 const express = require("express");
-// const http = require("http");
+const http = require("http");
 const app = express();
 const port = 3000;
 
-// app.use("/public", express.static("public"));
-// const server = http.createServer(app);
+app.use("/public", express.static("public"));
+const server = http.createServer(app);
 
-const io = require("socket.io")({
+const io = require("socket.io")(server,{
   cors: {
     origin: "*",
     methods: ["GET", "POST"],

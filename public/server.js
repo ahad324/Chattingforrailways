@@ -35,3 +35,6 @@ io.on("connection", (socket) => {
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+app.get('/socket.io', function(req, res) {
+  console.log("got request for socket.io");
+})

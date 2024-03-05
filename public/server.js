@@ -4,9 +4,9 @@ const app = express();
 const port = 3000;
 
 app.use("/public", express.static("public"));
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
-const io = require("socket.io")(server,{
+const io = require("socket.io")(8000,{
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -34,6 +34,8 @@ io.on("connection", (socket) => {
 });
 app.get('/socket.io', function(req, res) {
   console.log("got request for socket.io");
+    res.send("Got request for socket.io");
+    res.end();
 })
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

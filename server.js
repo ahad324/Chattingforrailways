@@ -1,12 +1,12 @@
 const express = require("express");
 const http = require("http");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use("/public", express.static("public"));
 // const server = http.createServer(app);
 
-const io = require("socket.io")(8000,{
+const io = require("socket.io")(8000, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -32,10 +32,10 @@ io.on("connection", (socket) => {
     delete users[socket.id];
   });
 });
-app.get('/socket.io', function(req, res) {
+app.get('/socket.io', function (req, res) {
   console.log("got request for socket.io");
-    res.send("Got request for socket.io");
-    res.end();
+  res.send("Got request for socket.io");
+  res.end();
 })
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
